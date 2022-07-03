@@ -3,7 +3,6 @@ import faculdade_pb2  # Funções de marshalling e unmarshalling
 import faculdade_pb2_grpc
 import PySimpleGUI as sg
 from classes import aluno, boletim
-from functions import *  # Funções de setters ra, cod_disciplina, ano, semestre, nota e faltas
 
 sg.theme_global('DarkBlue3')
 
