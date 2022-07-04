@@ -13,14 +13,53 @@
 
 import mongoose from 'mongoose'
 import MatriculaSchema from '../database/Schemas/Matricula.js'
+import AlunoSchema from '../database/Schemas/Aluno.js'
 
-mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost:60000/faculdade')
-  .then(() => {
-    console.log('Mongodb conectado...');
-  }).catch(() => {
-    console.log('Erro ao conectar com o mongo');
-  })
+import { MongoClient } from "mongodb";
+const uri = 'mongodb://localhost:60000';
+const client = new MongoClient(uri);
+// async function run() {
+  // try {
+  //   await client.connect();
+  //   const database = client.db("faculdade");
+  //   const movies = database.collection("disciplinas");
+  //   // query for movies that have a runtime less than 15 minutes
+  //   const cursor = movies.find({ codigo: 'BCC36C' });
+  //   // print a message if no documents were found
+  //   if ((await cursor.count()) === 0) {
+  //     console.log("No documents found!");
+  //   }
+  //   // replace console.dir with your callback to access individual elements
+  //   await cursor.forEach(console.dir);
+  // } finally {
+  //   await client.close();
+  // }
+// }
+// run().catch(console.dir);
+
+// mongoose.Promise = global.Promise
+// mongoose.connect('mongodb://localhost:60000/faculdade')
+//   .then(() => {
+//     console.log('Mongodb conectado...');
+//   }).catch(() => {
+//     console.log('Erro ao conectar com o mongo');
+//   })
+
+  // try {
+    
+  //   const alunos = await AlunoSchema.findOne({
+  //     cod_disciplina: "BCC36C",
+  //     ano: 2022,
+  //     semestre: 1,
+  //   })
+
+  //   console.log(alunos)
+
+  // } catch (error) {
+  //   console.log(error);
+  // }
+
+
 
 
 /**
@@ -131,19 +170,21 @@ export async function dbUpdateFaltas(matricula) {
 export async function dbListarAlunos(matricula) {
   const { codDisciplina, ano, semestre } = matricula;
 
-  const statement = await knex('Aluno')
-    .join('Matricula', { 'Aluno.ra': 'Matricula.ra' })
-    .select('Aluno.ra', 'Aluno.nome', 'Aluno.periodo', 'Aluno.cod_curso')
-    .where({ cod_disciplina: codDisciplina, ano, semestre });
-
-  const arrAlunos = statement.map((res) => {
-    return {
-      ra: res.ra,
-      nome: res.nome,
-      periodo: res.periodo,
-      cod_curso: res.cod_curso,
-    };
-  });
+  try {
+    await client.connect();
+    const database = client.db("faculdade");
+    const movies = database.collection("disciplinas");
+    // query for movies that have a runtime less than 15 minutes
+    const cursor = movies.find({ codigo: 'BCC36C' });
+    // print a message if no documents were found
+    if ((await cursor.count()) === 0) {
+      console.log("No documents found!");
+    }
+    // replace console.dir with your callback to access individual elements
+    await cursor.forEach(console.dir);
+  } finally {
+    await client.close();
+  }
 
   return arrAlunos;
 }

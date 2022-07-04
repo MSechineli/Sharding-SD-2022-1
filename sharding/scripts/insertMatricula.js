@@ -18,5 +18,16 @@ db.matriculas.insertMany([
   { "ra" : 100000, "cod_disciplina" : "BCC36E", "ano" : 2022, "semestre" : 1, "nota" : 6.4, "faltas" : 6},
   { "ra" : 100001, "cod_disciplina" : "BCC36E", "ano" : 2022, "semestre" : 1, "nota" : 7.3, "faltas" : 2},
   { "ra" : 100002, "cod_disciplina" : "BCC35D", "ano" : 2022, "semestre" : 1, "nota" : 6.6, "faltas" : 4},
-  { "ra" : 100003, "cod_disciplina" : "BCC35D", "ano" : 2022, "semestre" : 1, "nota" : 6.9, "faltas" : 0}
+  { "ra" : 100003, "cod_disciplina" : "BCC35D", "ano" : 2022, "semestre" : 1, "nota" : 6.9, "faltas" : 0},
+  { "ra" : 1900010, "cod_disciplina" : "BCC35D", "ano" : 2022, "semestre" : 1, "nota" : 9.8, "faltas" : 0},
+  { "ra" : 1900011, "cod_disciplina" : "BCC35D", "ano" : 2022, "semestre" : 1, "nota" : 8.2, "faltas" : 2},
+  { "ra" : 1900012, "cod_disciplina" : "BCC35D", "ano" : 2022, "semestre" : 1, "nota" : 7.3, "faltas" : 6},
+  { "ra" : 10001, "cod_disciplina" : "BCC35D", "ano" : 2022, "semestre" : 1, "nota" : 6.1, "faltas" : 0},
+  { "ra" : 10002, "cod_disciplina" : "BCC35B", "ano" : 2022, "semestre" : 1, "nota" : 6.5, "faltas" : 8},
+  { "ra" : 10003, "cod_disciplina" : "BCC35B", "ano" : 2022, "semestre" : 1, "nota" : 6.8, "faltas" : 2},
+  { "ra" : 10004, "cod_disciplina" : "BCC35B", "ano" : 2022, "semestre" : 1, "nota" : 7.1, "faltas" : 12},
+  { "ra" : 10005, "cod_disciplina" : "BCC35B", "ano" : 2022, "semestre" : 1, "nota" : 9.7, "faltas" : 4},
+  { "ra" : 6, "cod_disciplina" : "BCC35B", "ano" : 2022, "semestre" : 1, "nota" : 8.5, "faltas" : 0},
+  { "ra" : 7, "cod_disciplina" : "BCC35B", "ano" : 2022, "semestre" : 1, "nota" : 7.8, "faltas" : 0},
+  { "ra" : 8, "cod_disciplina" : "BCC35B", "ano" : 2022, "semestre" : 1, "nota" : 7.8, "faltas" : 0},
 ])
