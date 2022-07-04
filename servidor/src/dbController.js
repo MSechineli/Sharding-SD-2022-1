@@ -14,10 +14,32 @@
 import mongoose from 'mongoose'
 import MatriculaSchema from '../database/Schemas/Matricula.js'
 import AlunoSchema from '../database/Schemas/Aluno.js'
+import DisciplinaSchema from '../database/Schemas/Disciplina.js'
 
-import { MongoClient } from "mongodb";
-const uri = 'mongodb://localhost:60000';
-const client = new MongoClient(uri);
+// import { MongoClient } from "mongodb";
+// const uri = 'mongodb://localhost:60000';
+// const client = new MongoClient(uri);
+// async function run(){
+//   try {
+//     await client.connect();
+//     const database = client.db("faculdade");
+//     const movies = database.collection("matriculas");
+  
+//     const cursor = await movies.find({ 
+//       cod_disciplina: 'BCC36D',
+//       ano: 2022,
+//       semestre: 1
+//     });
+  
+//     if ((await cursor.count()) === 0) {
+//       console.log("No documents found!");
+//     }
+//     console.log(cursor)
+//   } finally {
+//     await client.close();
+//   }
+
+// }
 // async function run() {
   // try {
   //   await client.connect();
@@ -37,13 +59,13 @@ const client = new MongoClient(uri);
 // }
 // run().catch(console.dir);
 
-// mongoose.Promise = global.Promise
-// mongoose.connect('mongodb://localhost:60000/faculdade')
-//   .then(() => {
-//     console.log('Mongodb conectado...');
-//   }).catch(() => {
-//     console.log('Erro ao conectar com o mongo');
-//   })
+mongoose.Promise = global.Promise
+mongoose.connect('mongodb://localhost:60000/faculdade')
+  .then(() => {
+    console.log('Mongodb conectado...');
+  }).catch(() => {
+    console.log('Erro ao conectar com o mongo');
+  })
 
   // try {
     
@@ -169,21 +191,21 @@ export async function dbUpdateFaltas(matricula) {
  */
 export async function dbListarAlunos(matricula) {
   const { codDisciplina, ano, semestre } = matricula;
+  const arrAlunos = []
 
   try {
-    await client.connect();
-    const database = client.db("faculdade");
-    const movies = database.collection("disciplinas");
-    // query for movies that have a runtime less than 15 minutes
-    const cursor = movies.find({ codigo: 'BCC36C' });
-    // print a message if no documents were found
-    if ((await cursor.count()) === 0) {
-      console.log("No documents found!");
-    }
-    // replace console.dir with your callback to access individual elements
-    await cursor.forEach(console.dir);
-  } finally {
-    await client.close();
+    
+    const matriculas = await MatriculaSchema.find({
+      cod_disciplina: codDisciplina,
+      ano: ano,
+      semestre: semestre,
+    })
+    
+    for(const matricula of matriculas) 
+      arrAlunos.push(...await AlunoSchema.find({ra: matricula.ra}))
+
+  } catch (error) {
+    console.log(error);
   }
 
   return arrAlunos;
@@ -198,33 +220,55 @@ export async function dbListarAlunos(matricula) {
  * @returns {Array} retorna um array de disciplinas e matriculas.
  */
 export async function dbBoletimAlunos(matricula) {
-  const arrMatricula = [];
-  const arrDisciplina = [];
-
   const { ra, ano, semestre } = matricula;
 
-  const statement = await knex('Matricula')
-    .join('Disciplina', {
-      'Matricula.cod_disciplina': 'Disciplina.codigo',
+  try {
+    
+    const alunos = await AlunoSchema.find({
+      ra: ra,
     })
-    .where({ ra, ano, semestre });
+    
+    const matriculas=await MatriculaSchema.find({ano, semestre, ra})
 
-  statement.forEach((statement) => {
-    arrMatricula.push({
-      ra: statement.ra,
-      ano: statement.ano,
-      semestre: statement.semestre,
-      codDisciplina: statement.cod_disciplina,
-      faltas: statement.faltas,
-      nota: statement.nota,
-    });
-    arrDisciplina.push({
-      codigo: statement.codigo,
-      nome: statement.nome,
-      professor: statement.professor,
-      codCurso: statement.cod_curso,
-    });
-  });
+    for(const matricula of matriculas)
+      matricula.disciplina = DisciplinaSchema.find({codigo: matricula.cod_disciplina})
+    
+    console.log(matriculas)
+    console.log(alunos)
+    return [alunos, matriculas]
+  } catch (error) {
+    console.log(error);
+    throw error
+  }
 
-  return [arrDisciplina, arrMatricula];
+  // const arrMatricula = [];
+  // const arrDisciplina = [];
+
+  // const { ra, ano, semestre } = matricula;
+
+  // const statement = await knex('Matricula')
+  //   .join('Disciplina', {
+  //     'Matricula.cod_disciplina': 'Disciplina.codigo',
+  //   })
+  //   .where({ ra, ano, semestre });
+
+  // statement.forEach((statement) => {
+  //   arrMatricula.push({
+  //     ra: statement.ra,
+  //     ano: statement.ano,
+  //     semestre: statement.semestre,
+  //     codDisciplina: statement.cod_disciplina,
+  //     faltas: statement.faltas,
+  //     nota: statement.nota,
+  //   });
+  //   arrDisciplina.push({
+  //     codigo: statement.codigo,
+  //     nome: statement.nome,
+  //     professor: statement.professor,
+  //     codCurso: statement.cod_curso,
+  //   });
+  // });
+
+  // return [arrDisciplina, arrMatricula];
 }
+

@@ -9,31 +9,4 @@ const MatriculaSchema = mongoose.model('Matricula', {
   faltas: Number
 })
 
-// const MatriculaSchema = mongoose.Schema({
-//   ra: {
-//     type: Number,
-//     require: true
-//   },
-//   cod_disciplina: {
-//     type: String,
-//     require: true
-//   },
-//   ano: {
-//     type: Number,
-//     require: true
-//   },
-//   semestre: {
-//     type: Number,
-//     require: true
-//   },
-//   nota: {
-//     type: Number,
-//     require: true
-//   },
-//   faltas: {
-//     type: Number,
-//     require: true
-//   }
-// })
-
 export default MatriculaSchema

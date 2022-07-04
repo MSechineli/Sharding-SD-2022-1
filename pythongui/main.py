@@ -8,7 +8,6 @@ sg.theme_global('DarkBlue3')
 
 
 def windowSelectOp():
-
     # All the stuff inside your window.
     layout = [
         [sg.Text('Informe qual operação deseja realizar:')],
@@ -29,7 +28,6 @@ def windowSelectOp():
 
 
 def windowsFirstOp(stub):
-
     # All the stuff inside your window.
     layout = [
         [sg.Text('Preencha os dados:')],
@@ -57,7 +55,6 @@ def windowsFirstOp(stub):
 
         # Realiza uma chamada na funcao de inserir matricula e recebe uma resposta do servidor;
         resposta = stub.InserirMatricula(matricula)
-        
 
         # Recebe a resposta do servidor
         sg.popup(f'Servidor: {resposta.mensagem}')
@@ -69,7 +66,6 @@ def windowsFirstOp(stub):
 
 
 def windowsSecondOp(stub):
-
     # All the stuff inside your window.
     layout = [
         [sg.Text('Preencha os dados:')],
@@ -97,7 +93,7 @@ def windowsSecondOp(stub):
 
         # Realiza uma chamada na funcao de atualizar nota da matricula e recebe uma resposta do servidor;
         resposta = stub.AtualizarNota(matricula)
-        
+
         # Recebe a resposta do servidor
         sg.popup(f'Servidor: {resposta.mensagem}')
 
@@ -108,7 +104,6 @@ def windowsSecondOp(stub):
 
 
 def windowsThirdOp(stub):
-
     # All the stuff inside your window.
     layout = [
         [sg.Text('Preencha os dados:')],
@@ -136,7 +131,7 @@ def windowsThirdOp(stub):
 
         # Realiza uma chamada na funcao de atualizar faltas da matricula e recebe uma resposta do servidor;
         resposta = stub.AtualizarFaltas(matricula)
-        
+
         # Recebe a resposta do servidor
         sg.popup(f'Servidor: {resposta.mensagem}')
 
@@ -175,7 +170,6 @@ def windowOutput(lista, op):
 
 
 def windowsFourthOp(stub):
-
     # All the stuff inside your window.
     layout = [
         [sg.Text('Preencha os dados:')],
@@ -200,7 +194,7 @@ def windowsFourthOp(stub):
 
         # Realiza uma chamada na funcao de listar alunos de uma disciplina e recebe uma resposta do servidor;
         resposta = stub.ListarAlunosDaDisciplina(matricula)
-        
+
         # Quantidade de alunos
         qtdAlunos = len(resposta.alunos)
 
@@ -222,7 +216,7 @@ def windowsFourthOp(stub):
                         str(student.periodo)
                     )
                 )
-            
+
             windowOutput(listaAlunos, 4)
 
     elif event == sg.WIN_CLOSED or event == 'Cancelar':
@@ -232,7 +226,6 @@ def windowsFourthOp(stub):
 
 
 def windowsFifthOp(stub):
-
     # All the stuff inside your window.
     layout = [
         [sg.Text('Preencha os dados:')],
@@ -257,7 +250,7 @@ def windowsFifthOp(stub):
 
         # Realiza uma chamada na funcao de listar o boletim de um aluno e recebe uma resposta do servidor;
         resposta = stub.ListarBoletimDoAluno(matricula)
-        
+
         # Quantidade de disciplinas
         qtdDisciplinas = len(resposta.disciplina)
 
@@ -318,7 +311,7 @@ def mainWindow(stub):
 if __name__ == '__main__':
     # Cria um canal de comunicacao
     channel = grpc.insecure_channel("localhost:7000")
-    
+
     # Inicializacao do stub
     stub = faculdade_pb2_grpc.FaculdadeStub(channel)
 
