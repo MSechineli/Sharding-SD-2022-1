@@ -1,0 +1,21 @@
+use faculdade
+db.disciplinas.insertMany([
+  { "codigo" : "BCC34A", "nome" : "Análise De Algoritmos (IC4A_CM)", "professor" : "Foleiss", "cod_curso" : 1 },
+  { "codigo" : "BCC34G", "nome" : "SISTEMAS OPERACIONAIS (IC4A_CM)", "professor" : "Campiolo", "cod_curso" : 1 },
+  { "codigo" : "BCC34D", "nome" : "REDES DE COMPUTADORES 1 (IC4A_CM)", "professor" : "Luiz", "cod_curso" : 1 },
+  { "codigo" : "BCC34F", "nome" : "PROGRAMACAO DE APLICATIVOS (IC4A_CM)", "professor" : "Ivanilton", "cod_curso" : 1 },
+  { "codigo" : "BCC34B", "nome" : "LINGUAGENS FORMAIS, AUTOMATOS E COMPUTABILIDADE (IC4A_CM)", "professor" : "Rag", "cod_curso" : 1 },
+  { "codigo" : "BCC35B", "nome" : "TEORIA DOS GRAFOS (IC5A_CM)", "professor" : "Kawamoto", "cod_curso" : 1 },
+  { "codigo" : "BCC35D", "nome" : "REDES DE COMPUTADORES 2 (IC5A_CM)", "professor" : "Luiz", "cod_curso" : 1 },
+  { "codigo" : "BCC35C", "nome" : "PROJETO INTEGRADOR (IC5A_CM)", "professor" : "Reginaldo", "cod_curso" : 1 },
+  { "codigo" : "BCC35A", "nome" : "Linguagens de Programação (IC5A_CM)", "professor" : "Silvano", "cod_curso" : 1 },
+  { "codigo" : "BCC35G", "nome" : "INTELIGENCIA ARTIFICIAL (IC5A_CM)", "professor" : "Diego", "cod_curso" : 1 },
+  { "codigo" : "BCC35E", "nome" : "Engenharia de Software 1 (IC5A_CM)", "professor" : "Gracioto", "cod_curso" : 1 },
+  { "codigo" : "BCC35F", "nome" : "Computação Gráfica (IC5A_CM)", "professor" : "Aretha", "cod_curso" : 1 },
+  { "codigo" : "BCC36C", "nome" : "SISTEMAS DISTRIBUIDOS (IC6A_CM)", "professor" : "Campiolo", "cod_curso" : 1 },
+  { "codigo" : "BCC36D", "nome" : "SEGURANCA E AUDITORIA DE SISTEMAS (IC6A_CM)", "professor" : "Luiz", "cod_curso" : 1 },
+  { "codigo" : "BCC36F", "nome" : "Processamento de Imagens (IC6A_CM)", "professor" : "Aretha", "cod_curso" : 1 },
+  { "codigo" : "BCC36A", "nome" : "METODOLOGIA DE PESQUISA (IC6A_CM)", "professor" : "Liberato", "cod_curso" : 1 },
+  { "codigo" : "BCC36E", "nome" : "ENGENHARIA DE SOFTWARE 2 (IC6A_CM)", "professor" : "Reginaldo", "cod_curso" : 1 },
+  { "codigo" : "BCC36B", "nome" : "Compiladores (IC6A_CM)", "professor" : "Rag", "cod_curso" : 1 },
+])
